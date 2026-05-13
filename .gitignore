@@ -34,6 +34,9 @@ projects/briefs/*
 projects/*/
 !projects/.gitkeep
 !projects/briefs/.gitkeep
+# Excepción: el showcase sí forma parte del repo (material de referencia)
+!projects/_showcase/
+!projects/_showcase/**
 
 # Client data — sensible
 clients/*

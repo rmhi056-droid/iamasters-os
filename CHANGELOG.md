@@ -9,9 +9,92 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Próximas versiones (en backlog)
-- v0.5.0: sprint con feedback de Luis sobre v0.4.3 + skills extra basadas en uso real
-- v0.6.0: dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
+- v0.6.0: skills nativas en español (meeting-notes, proposal-writer, youtube-transcript, linkedin-posts) reescritas con voice profile del operador
+- v0.7.0: dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
 - v1.0.0: release pública estable + vídeos Loom integrados + landing en iamastersacademy.com/os
+
+---
+
+## v0.5.0 — Sistema vivo + skills automation/email/strategy + /aprende (2026-05-13)
+
+> **Visión**: convertir iAmasters OS en un **sistema vivo** que crece con la comunidad. Cierre del feedback de Fernando Montero sobre v0.4.3 con decisiones tomadas explícitamente (vendoreo selectivo, plugins Anthropic vía marketplace, comando educativo `/aprende`).
+
+### Added — Skills nuevas vendoreadas (3, todas MIT con ORIGIN.md)
+
+- **`marketing-email-sequence`** — secuencias welcome/nurture/win-back/lifecycle. Vendoreada de [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT, Corey Haines). Renombrada de `email-sequence` para seguir convención iAmasters OS.
+- **`strategy-web-research`** — research profundo multi-fuente con subagentes. Vendoreada de [langchain-ai/deepagents](https://github.com/langchain-ai/deepagents) (MIT, LangChain Inc.). Renombrada de `web-research`.
+- **`automation-n8n-to-claude`** — migra workflows n8n/Make al ecosistema Claude. Vendoreada del catálogo personal de Angel Aparicio (iAmasters Automations).
+
+### Added — Skill nueva escrita desde cero (1)
+
+- **`automation-n8n-builder`** — crea, valida y despliega workflows n8n desde Claude usando el MCP `n8n-mcp`. Incluye patrones comunes (webhook→procesar→notificar, schedule→leer→reportar, etc.) y guardrails sobre cuándo NO usar n8n.
+
+### Added — Slash command nuevo
+
+- **`/aprende`** — tour interactivo de 5 días para alumnos que empiezan desde cero. Idempotente vía marker en `context/learn-progress.json`. Currículum:
+  - **Día 1**: qué es una skill, cómo Claude las activa sola, demo en vivo
+  - **Día 2**: brand context (voice, ICP, positioning) — output personal vs genérico
+  - **Día 3**: multi-cliente con `/add-client`
+  - **Día 4**: catálogo (plugins Anthropic, `/install-skill`, `/install-mcp`)
+  - **Día 5**: flujo end-to-end real (reunión → notas → propuesta → email)
+
+### Changed — Cognito mueve a opcional
+
+- **`cognito` movida a `.claude/skills/_meta/_optional/cognito/`**. No se instala automáticamente. Se activa con `/install-skill cognito` cuando el alumno conoce los fundamentos. Razón: feedback de Fernando — para alguien que abre el OS por primera vez, cognito es ruido conceptual.
+- **`/install-skill`** ampliado: si el argumento NO es URL sino nombre simple (ej. `cognito`), busca en `_optional/` y activa.
+- **`scripts/install.sh`** YA NO copia cognito automáticamente — solo muestra mensaje informativo.
+
+### Changed — tool-visual-explainer mueve a visualization/
+
+- **`tool-visual-explainer`** movida de `tools/` → `visualization/`. Razón: las carpetas `operations/`, `strategy/` y `visualization/` existían vacías en v0.4.3 (bug documental detectado por Fernando). Ahora `visualization/` tiene contenido coherente.
+
+### Changed — Filosofía "Sistema vivo" explícita en README
+
+- Nueva sección 🌱 **Sistema vivo** en README explicando que el catálogo crece con la comunidad (ciclo 4-6 semanas). Refuerza el proceso de propuesta y retirada de skills documentado en `docs/skills-recommended.md`.
+- Cadencia esperada de release menor: cada 4-6 semanas con skills validadas por la comunidad.
+
+### Changed — Plugins oficiales Anthropic vía marketplace (NO vendoreados)
+
+- **Decisión legal**: las 4 skills oficiales de Anthropic (`docx`, `xlsx`, `pdf`, `pptx`) tienen licencia **"source-available", NO open source** (verificado en `skills/docx/LICENSE.txt` del repo `anthropics/skills`). **No se pueden redistribuir** en este repo MIT.
+- **Solución**: documentar instalación vía marketplace oficial dentro de Claude Code (`/plugin install anthropic-skills`). El usuario las recibe directamente de Anthropic, no de este repo. Ventaja añadida: cuando Anthropic actualiza, el usuario las recibe sin esperar release.
+- **Integración**: día 4 del comando `/aprende` guía al alumno paso a paso para activarlas.
+
+### Added — Showcase pre-poblado
+
+- **`projects/_showcase/`** — 4 outputs reales generados con datos sintéticos para que el alumno vea qué tipo de resultado produce el sistema antes de generar el suyo:
+  1. **Post LinkedIn** — preview visual simulando LinkedIn nativo
+  2. **Secuencia de bienvenida** (5 emails) — HTML interactivo desplegable
+  3. **Resumen de reunión kick-off** — HTML con temas, action items y riesgos
+  4. **Propuesta comercial** — HTML branded premium estilo Sintaxis Lab
+- Caso unificado: consultora ficticia "Marta Sánchez" trabajando con "Logística del Norte SL". Coherencia entre outputs muestra cómo el brand context atraviesa todas las skills.
+- Borrable sin afectar nada: `rm -rf projects/_showcase/`.
+
+### Fixed — Inconsistencias documentales detectadas en revisión Fernando
+
+- **`docs/quickstart.md`** ya no menciona skills inexistentes (`operations-meeting-notes`, `strategy-competitor-monitor`). Sustituidas por ejemplos con skills que sí existen.
+- **Recuento de skills**: README y CLAUDE.md ahora dicen 22 skills core (era 18 anunciadas pero descuadradas con el sistema real).
+- **Carpetas vacías**: `operations/` y `strategy/` ya no son fantasmas — `strategy/` tiene `strategy-web-research`. `operations/` se mantiene vacía hasta v0.6.0 (donde entran las versiones nativas en español).
+
+### Filosofía v0.5.0
+
+- **Vendoreo selectivo, no a ciegas**: de 6 skills sugeridas por Fernando, solo 2 pasaron auditoría (Haiku-evaluated): email-sequence y web-research. Las otras 4 (meeting-notes, proposal-writer, youtube-transcript, linkedin-posts) están en backlog v0.6.0 para reescritura nativa en español con voice profile.
+- **Cumplimiento legal explícito**: dos decisiones de licencia tomadas (Sinapsis pasa a MIT por acuerdo con Luis Pitik · skills oficiales Anthropic vía marketplace, no copiadas). Cero zonas grises.
+- **Sistema vivo como narrativa**: el repo no es producto cerrado. Cada release menor incorpora 1-3 skills validadas por la comunidad.
+- **Educación incluida**: el alumno desde cero tiene un tutorial guiado (`/aprende`) y un showcase de referencia (`projects/_showcase/`). No depende de vídeos externos.
+
+### Counts post-v0.5.0
+
+| Categoría | v0.4.3 | v0.5.0 |
+|---|---:|---:|
+| `_meta/` | 10 (con cognito) | 9 |
+| `_meta/_optional/` | 0 | 1 (cognito) |
+| `marketing/` | 5 | 6 (+email-sequence) |
+| `automation/` | 0 | 2 (nuevo) |
+| `strategy/` | 0 | 1 (nuevo) |
+| `tools/` | 4 | 3 (-visual-explainer) |
+| `visualization/` | 0 | 1 (+visual-explainer) |
+| **Total core** | **18** | **22** |
+| Plugins Anthropic | — | 4 (via marketplace) |
 
 ---
 

@@ -36,11 +36,11 @@ Pide algo concreto. Ejemplos:
 "Escribe 3 versiones de post LinkedIn sobre <tema>"
 → Claude usa marketing-copywriting con tu voice profile
 
-"Resume esta reunión" + paste transcript
-→ operations-meeting-notes
+"Repurposea esta clase del Café Camaleónico para redes"
+→ marketing-content-repurposing
 
-"Investiga qué hace mi competidor X últimamente"
-→ strategy-competitor-monitor (cuando exista)
+"Genera un HTML compartible explicando esta decisión"
+→ tool-visual-explainer
 ```
 
 ## Minuto 25-30 · Wrap-up

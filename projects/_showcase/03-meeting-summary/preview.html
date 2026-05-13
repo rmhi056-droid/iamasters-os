@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showcase — Resumen reunión kick-off · Logística del Norte</title>
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --ink: #1A202C;
+    --body: #4A5568;
+    --muted: #718096;
+    --accent: #FF8C42;
+    --accent-soft: #FFF5EB;
+    --green: #1E9B50;
+    --red: #DC3545;
+    --amber: #E8842A;
+    --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px 80px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.55; font-size: 15px;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  .badge {
+    background: var(--accent-soft); color: #C2410C;
+    border: 1px solid #FFE0BF;
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    display: inline-block;
+  }
+  h1 { font-size: 30px; font-weight: 800; margin: 14px 0 6px; line-height: 1.15; }
+  .subtitle { color: var(--body); font-size: 16px; margin-bottom: 24px; }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+  .meta-item { font-size: 13px; }
+  .meta-item .k { color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; font-weight: 600; }
+  .meta-item .v { color: var(--ink); font-weight: 600; margin-top: 4px; }
+  section { margin-top: 36px; }
+  h2 {
+    font-size: 19px; font-weight: 700;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px; display: inline-block;
+    margin-bottom: 16px;
+  }
+  .summary-box {
+    background: var(--surface);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .topics { display: grid; gap: 12px; }
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .topic-head {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .topic-num {
+    width: 26px; height: 26px;
+    background: var(--ink); color: white;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .topic-title { font-weight: 700; font-size: 16px; flex: 1; min-width: 200px; }
+  .time { color: var(--muted); font-size: 12px; font-family: ui-monospace, monospace; }
+  .topic-body { font-size: 14px; color: var(--body); }
+  ul { padding-left: 20px; margin: 10px 0 0; }
+  li { margin: 6px 0; }
+  .actions-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    font-size: 14px;
+  }
+  .actions-table th {
+    background: #FBFAF6; padding: 12px 14px;
+    text-align: left;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .actions-table td {
+    padding: 14px; border-top: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600;
+    font-family: ui-monospace, monospace;
+  }
+  .pill.high { background: #FEE2E2; color: #B91C1C; }
+  .pill.mid { background: #FEF3C7; color: #92400E; }
+  .pill.low { background: #DCFCE7; color: #166534; }
+  .risk {
+    background: #FFF8F0;
+    border: 1px solid #FFE0BF;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+  .risk .lvl { font-weight: 700; color: #C2410C; font-size: 13px; }
+  .quote {
+    background: var(--surface);
+    border-left: 3px solid var(--muted);
+    padding: 14px 20px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-style: italic;
+    color: var(--body);
+  }
+  .quote .who { display: block; font-style: normal; color: var(--ink); font-weight: 600; font-size: 13px; margin-top: 6px; }
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 30px;
+    font-size: 13px; color: var(--body);
+  }
+  .note b { color: var(--ink); }
+  code { background: #F1F5F9; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">Showcase 03 · Resumen reunión</span>
+  <h1>Kick-off — Logística del Norte SL</h1>
+  <p class="subtitle">Reunión de arranque del proyecto de automatización de albaranes e incidencias. 1h 12min. 4 asistentes.</p>
+
+  <div class="meta-bar">
+    <div class="meta-item"><div class="k">Fecha</div><div class="v">Lun 11 May · 10:00</div></div>
+    <div class="meta-item"><div class="k">Duración</div><div class="v">1h 12min</div></div>
+    <div class="meta-item"><div class="k">Asistentes</div><div class="v">4 (LdN: 3 · Sintaxis: 1)</div></div>
+    <div class="meta-item"><div class="k">Modalidad</div><div class="v">Presencial — Zaragoza</div></div>
+    <div class="meta-item"><div class="k">Next</div><div class="v">Mié 13 May · Field visit</div></div>
+  </div>
+
+  <section>
+    <h2>Resumen ejecutivo (TL;DR)</h2>
+    <div class="summary-box">
+      <p>Javier (dirección) confirma alcance y presupuesto del proyecto. Foco prioritario: digitalización de albaranes vía foto-móvil del camionero. La incidencia automática queda en segunda fase para validar el flujo principal antes. <b>Riesgo clave</b>: Pilar (administración) muestra escepticismo y va a ser usuaria principal — sin su buy-in el sistema no entra. Acción inmediata: 1h con Pilar en visita de campo el miércoles.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Temas tratados</h2>
+    <div class="topics">
+
+      <div class="topic">
+        <div class="topic-head">
+          <div class="topic-num">01</div>
+          <div class="topic-title">Alcance del MVP — sólo albaranes, no incidencias</div>
+          <div class="time">[00:08 → 00:24]</div>
+        </div>
+        <div class="topic-body">
+          Javier propuso reducir alcance v1 para validar antes de meter complejidad. Acordado: la app móvil hace foto → OCR → entrada en sistema. La parte de incidencias automáticas (cruce con datos de envío, notificación al cliente) queda para v2 una vez los camioneros adopten el flujo básico.
+          <div class="quote">"Si Pilar tiene que revisar más casos que ahora, es que lo hemos hecho mal. Quiero que toque menos casos, no más."
+            <span class="who">— Javier, Director</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-head">
+          <div class="topic-num">02</div>
+          <div class="topic-title">Buy-in de Pilar (administración)</div>
+          <div class="time">[00:24 → 00:38]</div>
+        </div>
+        <div class="topic-body">
+          Pilar expresó preocupación: "He visto otros proyectos así, al final yo acabo arreglando lo que la IA hace mal". Le respondí que la app NO le quita su rol — solo le quita el 88% de los casos triviales que ya hace bien. Ella mantiene los casos dudosos y eso aporta su criterio.
+          <ul>
+            <li>Pilar pidió ver el sistema en uso real antes de aprobarlo</li>
+            <li>Propuso piloto con 2 camioneros (los más colaborativos) durante 2 semanas</li>
+            <li>Quiere participar en el diseño del panel de revisión</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-head">
+          <div class="topic-num">03</div>
+          <div class="topic-title">Presupuesto y calendario</div>
+          <div class="time">[00:38 → 00:55]</div>
+        </div>
+        <div class="topic-body">
+          Confirmado lo propuesto: 14.500€ + 290€/mes (modelo OCR + hosting). Calendario:
+          <ul>
+            <li><b>Sem 1-2</b>: visita de campo + diseño con Pilar</li>
+            <li><b>Sem 3-4</b>: desarrollo MVP</li>
+            <li><b>Sem 5-6</b>: piloto con 2 camioneros</li>
+            <li><b>Sem 7-8</b>: rollout al resto del equipo + entrega</li>
+          </ul>
+          Pago: 40% inicio, 40% piloto OK, 20% rollout completo. Contrato lo prepara su abogado para el viernes.
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-head">
+          <div class="topic-num">04</div>
+          <div class="topic-title">Integración con su software actual</div>
+          <div class="time">[00:55 → 01:08]</div>
+        </div>
+        <div class="topic-body">
+          Usan ATLAS (ERP de transporte, español, 2014). Marc (técnico LdN) confirmó: <b>no tiene API moderna</b>, solo importa CSV. Plan B acordado: el sistema deja el CSV en una carpeta compartida y ATLAS lo importa cada hora con su rutina actual. No es elegante pero funciona y no rompe nada de lo que ya tienen.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Action items</h2>
+    <table class="actions-table">
+      <thead>
+        <tr><th>Acción</th><th>Responsable</th><th>Fecha</th><th>Prioridad</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visita de campo + 1h con Pilar</td>
+          <td>Marta</td>
+          <td>Mié 13 May</td>
+          <td><span class="pill high">P0</span></td>
+        </tr>
+        <tr>
+          <td>Identificar 2 camioneros para piloto</td>
+          <td>Javier + Marc</td>
+          <td>Vie 15 May</td>
+          <td><span class="pill high">P0</span></td>
+        </tr>
+        <tr>
+          <td>Borrador de contrato</td>
+          <td>Abogado LdN</td>
+          <td>Vie 15 May</td>
+          <td><span class="pill high">P0</span></td>
+        </tr>
+        <tr>
+          <td>Recopilar 200 albaranes ejemplo para entrenar OCR</td>
+          <td>Pilar</td>
+          <td>Lun 18 May</td>
+          <td><span class="pill mid">P1</span></td>
+        </tr>
+        <tr>
+          <td>Documentar formato CSV que espera ATLAS</td>
+          <td>Marc</td>
+          <td>Mié 20 May</td>
+          <td><span class="pill mid">P1</span></td>
+        </tr>
+        <tr>
+          <td>Diseño de panel de revisión (mock-up)</td>
+          <td>Marta + Pilar</td>
+          <td>Vie 22 May</td>
+          <td><span class="pill low">P2</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Riesgos detectados</h2>
+    <div class="risk">
+      <div class="lvl">⚠ Alto — Resistencia de Pilar (administración)</div>
+      <div>Si no consigo su buy-in en la visita del miércoles, el proyecto entra en zona de fricción mes 1. <b>Mitigación</b>: 1h dedicada con ella, dejarla co-diseñar el panel de revisión, prometerle métricas semanales de "casos que ya no toca".</div>
+    </div>
+    <div class="risk">
+      <div class="lvl">⚠ Medio — Integración con ATLAS vía CSV</div>
+      <div>No es elegante. Si ATLAS rompe su rutina horaria, el sistema deja de funcionar. <b>Mitigación</b>: monitorización extra de la carpeta compartida primeras 4 semanas + plan de contingencia escrito.</div>
+    </div>
+    <div class="risk">
+      <div class="lvl">⚠ Bajo — Cobertura 4G en rutas remotas</div>
+      <div>Algunos camioneros hacen rutas rurales sin cobertura buena. Mitigación: la app guarda offline y sincroniza cuando vuelve la red. Confirmar con Marc qué % de rutas son afectadas.</div>
+    </div>
+  </section>
+
+  <div class="note">
+    <b>Cómo se generó.</b> Input: transcripción de la reunión (72 min, ~14.500 palabras) + screenshots de la pantalla compartida. Pipeline: <code>tool-visual-explainer</code> recibió la transcripción y extrajo temas, action items con responsables, y riesgos. Los timestamps se sacaron del transcript original. La estructura sigue el patrón de "5 secciones canónicas para resumen de kick-off" definido en <code>brand-context/</code>.
+  </div>
+</div>
+</body>
+</html>

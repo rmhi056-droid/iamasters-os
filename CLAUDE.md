@@ -89,13 +89,16 @@ Lo que aporta este repo encima de Sinapsis:
 - `user.md` — el operador en contexto del repo (preferencias visuales en docs, ejemplos del día a día)
 - `learnings.md` — feedback consolidado de skills
 
-**Skills curadas (`.claude/skills/`)** — 18-22 skills por categoría:
-- `_meta/` — sistema (skill-creator, onboarding-wizard, output-verifier)
-- `marketing/` — brand-voice, positioning, ICP, copywriting, repurposing, UGC, email-sequence
-- `operations/` — meeting-notes, task-priority
-- `strategy/` — trending-research, competitor-monitor
-- `tools/` — humanizer, firecrawl-scraper, youtube-transcript, output-verifier
-- `visualization/` — excalidraw-diagram
+**Skills curadas (`.claude/skills/`)** — 22 skills core por categoría:
+- `_meta/` — sistema (skill-creator, onboarding-wizard, start-here, wrap-up, welcome-quick-win, six-hats, decisions-log, health-check, find-skills)
+- `_meta/_optional/` — cognito (activable on-demand)
+- `marketing/` — brand-voice, positioning, icp, copywriting, content-repurposing, email-sequence
+- `automation/` — n8n-to-claude, n8n-builder
+- `strategy/` — web-research
+- `tools/` — humanizer, firecrawl-scraper, output-verifier
+- `visualization/` — visual-explainer
+
+Skills oficiales Anthropic (`docx`, `xlsx`, `pdf`, `pptx`): NO se vendorean (licencia source-available). Se instalan vía `/plugin install anthropic-skills` en Claude Code. El comando `/aprende` día 4 lo guía.
 
 **Niveles de proyecto**:
 1. **Single task** — pregunta directa. Output a `projects/<skill-name>/<fecha>-<titulo>/`.
@@ -110,11 +113,11 @@ Lo que aporta este repo encima de Sinapsis:
 
 ## Skills registry (auto-mantenido)
 
-Lista canónica de skills instaladas en este repo (Capa 1, v0.4.3 = 18 skills core):
+Lista canónica de skills instaladas en este repo (Capa 1, v0.5.0 = 22 skills core + 1 opcional):
 
 <!-- skills-registry-start -->
 
-### `_meta/` — sistema (10)
+### `_meta/` — sistema (9)
 
 | Skill | Descripción corta |
 |---|---|
@@ -126,10 +129,15 @@ Lista canónica de skills instaladas en este repo (Capa 1, v0.4.3 = 18 skills co
 | `six-hats` | Método 6 sombreros de Edward de Bono |
 | `decisions-log` | Diario append-only de decisiones (inspirado en second-brain de Luis) |
 | `health-check` | Diagnóstico del OS — invocada vía `/doctor` |
-| `cognito` (wrapper) | Sistema Operativo de Pensamiento de Luis Pitik (vendoreado en `vendor/cognito/`) |
 | `find-skills` | Descoverabilidad de skills por intent en lenguaje natural |
 
-### `marketing/` — voz y conversión (5)
+### `_meta/_optional/` — activables on-demand (1)
+
+| Skill | Cómo activar |
+|---|---|
+| `cognito` | `/install-skill cognito` — Sistema Operativo de Pensamiento de Luis Pitik |
+
+### `marketing/` — voz, contenido y conversión (6)
 
 | Skill | Descripción corta |
 |---|---|
@@ -138,19 +146,44 @@ Lista canónica de skills instaladas en este repo (Capa 1, v0.4.3 = 18 skills co
 | `marketing-icp` | Cliente ideal: dolores, lenguaje, buying triggers |
 | `marketing-copywriting` | Copy con humanizer gate obligatorio |
 | `marketing-content-repurposing` | Distribución multiplataforma |
+| `marketing-email-sequence` | Secuencias de email (welcome, nurture, win-back, lifecycle) — vendoreada de coreyhaines31/marketingskills (MIT) |
 
-### `tools/` — utilidades transversales (4)
+### `automation/` — automatización y migración (2)
+
+| Skill | Descripción corta |
+|---|---|
+| `automation-n8n-to-claude` | Migra workflows n8n/Make al ecosistema Claude (autor: Angel · iAmasters) |
+| `automation-n8n-builder` | Crea workflows n8n desde Claude usando MCP `n8n-mcp` |
+
+### `strategy/` — investigación y estrategia (1)
+
+| Skill | Descripción corta |
+|---|---|
+| `strategy-web-research` | Research profundo con subagentes — vendoreada de langchain-ai/deepagents (MIT) |
+
+### `tools/` — utilidades transversales (3)
 
 | Skill | Descripción corta |
 |---|---|
 | `tool-firecrawl-scraper` | Wrapper Firecrawl con fallback manual |
 | `tool-humanizer` | Quita patrones AI-tell del output |
 | `tool-output-verifier` | Gate de calidad (humanizer + voice + length) antes de entregar |
+
+### `visualization/` — outputs compartibles (1)
+
+| Skill | Descripción corta |
+|---|---|
 | `tool-visual-explainer` | Genera HTML autocontenido compartible (sin JS, móvil-first) |
+
+### Plugins Anthropic (instalación vía marketplace)
+
+| Skill | Cómo activar |
+|---|---|
+| `docx`, `xlsx`, `pdf`, `pptx` | `/plugin install anthropic-skills` dentro de Claude Code. NO se vendorean (licencia source-available). El comando `/aprende` día 4 te guía. |
 
 ### Slash commands
 
-`/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp`
+`/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende`
 
 ### Capa 2 — on-demand library
 

@@ -10,11 +10,26 @@ Instala una skill externa desde GitHub al repo local con validación previa de e
 
 ```
 /install-skill <github-url>
+/install-skill <nombre-skill-opcional>
 ```
 
 Ejemplos:
 - `/install-skill https://github.com/scrapes/skills/humanizer`
 - `/install-skill https://github.com/anthropics/skills/copywriting`
+- `/install-skill cognito` (atajo a skill local en `_optional/`)
+
+## Modo "atajo opcional" (sin URL)
+
+Si el argumento NO es URL sino un nombre simple (ej. `cognito`):
+
+1. Buscar la skill en `.claude/skills/_meta/_optional/<nombre>/`.
+2. Si existe:
+   - Mover a `.claude/skills/_meta/<nombre>/`
+   - Update CLAUDE.md skills registry (sección `_meta/` +1, `_optional/` -1)
+   - Mensaje: *"Skill `<nombre>` activada. Reinicia Claude Code para que cargue."*
+3. Si NO existe → error: *"No hay skill opcional `<nombre>`. Skills disponibles en `_optional/`: <lista>."*
+
+Para desactivar una skill (moverla de vuelta a `_optional/`): editar manualmente o pedir al operador.
 
 ## Process
 

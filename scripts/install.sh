@@ -31,7 +31,7 @@ CLAUDE_HOME="$HOME/.claude"
 
 echo ""
 echo "============================================================"
-echo "  iAmasters OS — Installer v0.4.3"
+echo "  iAmasters OS — Installer v0.5.0"
 echo "  Repo: $REPO_ROOT"
 echo "============================================================"
 echo ""
@@ -262,18 +262,17 @@ else
     skip ".env · ya existe (no se sobrescribe)"
 fi
 
-# ── Step 7: Vendored skills (cognito) → global install ──
-info "[7/8] Sincronizando skills vendoreadas..."
+# ── Step 7: Vendored skills opcionales (cognito) → NO se instalan por defecto ──
+info "[7/8] Skills opcionales..."
 
-if [ -d "$REPO_ROOT/vendor/cognito" ]; then
-    if [ ! -d "$CLAUDE_HOME/skills/cognito" ]; then
-        cp -r "$REPO_ROOT/vendor/cognito" "$CLAUDE_HOME/skills/cognito"
-        ok "cognito copiada a $CLAUDE_HOME/skills/cognito (desde vendor/cognito)"
-    else
-        skip "cognito · ya existe en $CLAUDE_HOME/skills/cognito (no se sobrescribe)"
-    fi
-else
-    warn "vendor/cognito · no encontrada en repo (skill cognito no disponible)"
+# Desde v0.5.0 cognito ya NO se copia automáticamente.
+# Vive en .claude/skills/_meta/_optional/cognito y se activa con:
+#   /install-skill cognito
+# Razón: para alguien que abre el OS por primera vez es ruido conceptual.
+# Recomendado activarla tras la primera semana de uso, cuando ya conoce los básicos.
+
+if [ -d "$REPO_ROOT/.claude/skills/_meta/_optional/cognito" ]; then
+    skip "cognito · disponible en _optional/ — activar con /install-skill cognito cuando quieras"
 fi
 
 # ── Step 8: Final verification ──
@@ -304,10 +303,15 @@ echo "    3. Usa 'Open folder' y selecciona: $REPO_ROOT"
 echo "    4. La primera vez se ejecutará el onboarding wizard automáticamente"
 echo ""
 echo "  Comandos útiles dentro de Claude Code:"
+echo "    /aprende      — Tour de 5 días (alumnos desde cero)"
 echo "    /welcome      — Genera tu primer entregable (5 min)"
 echo "    /doctor       — Diagnóstico del OS"
 echo "    /start-here   — Ritual de inicio diario"
 echo "    /wrap-up      — Cierre de sesión + commit"
+echo ""
+echo "  Plugins oficiales Anthropic (recomendado activar):"
+echo "    /plugin install anthropic-skills"
+echo "    Te da: docx, xlsx, pdf, pptx (manejo de archivos office)"
 echo ""
 echo "  Si vienes del prompt URL conversacional:"
 echo "    Claude Code ya está procesando · sigue sus instrucciones"

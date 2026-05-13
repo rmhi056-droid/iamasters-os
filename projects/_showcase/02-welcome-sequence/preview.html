@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showcase — Secuencia bienvenida · Marta Sánchez</title>
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --ink: #1A202C;
+    --body: #4A5568;
+    --muted: #718096;
+    --accent: #FF8C42;
+    --accent-soft: #FFF5EB;
+    --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px 80px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .badge {
+    background: var(--accent-soft); color: #C2410C;
+    border: 1px solid #FFE0BF;
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    display: inline-block;
+  }
+  h1 { font-size: 28px; font-weight: 800; margin: 14px 0 6px; }
+  .lead { color: var(--body); font-size: 15px; max-width: 600px; }
+  .meta {
+    margin-top: 16px;
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: 13px; color: var(--muted);
+  }
+  .meta b { color: var(--ink); }
+  .timeline { position: relative; margin: 40px 0; padding-left: 0; }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    overflow: hidden;
+  }
+  details[open] { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .day {
+    width: 44px; height: 44px;
+    background: var(--accent); color: white;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    flex-shrink: 0; flex-direction: column;
+    line-height: 1;
+  }
+  .day small { font-size: 9px; font-weight: 500; opacity: 0.85; margin-top: 2px; }
+  .summary-text { flex: 1; }
+  .subject { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .preview-text { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .arrow { color: var(--muted); font-size: 18px; margin-left: auto; transition: transform 0.2s; }
+  details[open] .arrow { transform: rotate(180deg); }
+  .body {
+    padding: 0 22px 22px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+  .meta-row {
+    padding: 14px 0;
+    display: flex; gap: 24px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+    font-size: 13px; color: var(--body);
+  }
+  .meta-row b { color: var(--ink); }
+  .email {
+    background: #FBFBF9;
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 6px;
+    font-size: 14px; color: var(--ink);
+    white-space: pre-wrap;
+    line-height: 1.65;
+  }
+  .signature { margin-top: 18px; font-size: 13px; color: var(--muted); font-style: italic; }
+  .cta {
+    display: inline-block;
+    background: var(--accent); color: white;
+    padding: 8px 16px; border-radius: 6px;
+    font-size: 13px; font-weight: 600;
+    margin-top: 8px;
+  }
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 30px;
+    font-size: 13px; color: var(--body);
+  }
+  .note b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">Showcase 02 · Secuencia email</span>
+  <h1>Secuencia de bienvenida — Marta Sánchez</h1>
+  <p class="lead">5 emails para nuevos suscriptores que descargan la guía "Cómo identificar 3 procesos automatizables en tu PYME". Tono cercano, autoridad sutil, una sola CTA por email.</p>
+
+  <div class="meta">
+    <span><b>Audiencia:</b> Directores de PYME (50-200 empleados, sectores tradicionales)</span>
+    <span><b>Objetivo:</b> de descarga → llamada de diagnóstico</span>
+    <span><b>Cadencia:</b> 5 emails en 12 días</span>
+  </div>
+
+  <div class="timeline">
+
+    <details open>
+      <summary>
+        <div class="day">D+0<small>HOY</small></div>
+        <div class="summary-text">
+          <div class="subject">Tu guía está dentro (y una historia rápida)</div>
+          <div class="preview-text">Hola Javier, gracias por bajarte la guía. Antes de que la abras, te cuento por qué la escribí…</div>
+        </div>
+        <span class="arrow">▾</span>
+      </summary>
+      <div class="body">
+        <div class="meta-row">
+          <span><b>Cuándo:</b> Inmediato tras descarga</span>
+          <span><b>Objetivo:</b> Entrega + conexión emocional</span>
+          <span><b>CTA:</b> Abrir la guía</span>
+        </div>
+        <div class="email">Hola {{nombre}},
+
+Aquí va tu guía: [Descargar PDF]
+
+Antes de que la abras, te cuento por qué la escribí.
+
+El año pasado un cliente me llamó un martes a las 7 de la mañana. Pánico. Su equipo se había pasado el lunes hasta las 11 de la noche cuadrando albaranes a mano porque alguien había cambiado el formato del Excel.
+
+Yo le dije: "Esto no es un problema de IA. Es que llevas 6 años haciendo a mano lo que un script podría hacer en 3 segundos."
+
+Esa conversación se convirtió en esta guía. Si alguno de los 3 procesos que listo te suena a tu martes a las 7 de la mañana, sabrás por dónde empezar.
+
+Léela con calma. En 2 días te escribo con un caso concreto.
+
+Marta
+
+PD: si después de leerla te quedas con preguntas, responde a este email. Lo leo yo, no un bot.</div>
+        <a class="cta">Descargar la guía →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="day">D+2</div>
+        <div class="summary-text">
+          <div class="subject">El caso de Javier (transporte, 80 empleados)</div>
+          <div class="preview-text">Te prometí un caso concreto. Aquí lo tienes — el antes/después que hicimos…</div>
+        </div>
+        <span class="arrow">▾</span>
+      </summary>
+      <div class="body">
+        <div class="meta-row">
+          <span><b>Cuándo:</b> +48h</span>
+          <span><b>Objetivo:</b> Prueba social vía caso real</span>
+          <span><b>CTA:</b> Leer el caso completo</span>
+        </div>
+        <div class="email">Hola {{nombre}},
+
+Como te dije, hoy un caso.
+
+Javier dirige Logística del Norte (transporte, 80 empleados, Aragón). Antes de empezar conmigo:
+
+– Sus camioneros le llamaban a las 11 de la noche por albaranes mal escaneados
+– Su administrativa pasaba 4 horas/día metiendo datos a mano
+– Cada incidencia tardaba 36 horas en cerrarse
+
+Después de 6 semanas de trabajo:
+
+– El camionero hace foto al albarán con el móvil → procesado en 8 segundos
+– La administrativa solo revisa los que el sistema marca como dudosos (12% del total)
+– Las incidencias se cierran solas en menos de 2 horas
+
+Coste: lo que Javier pagaba en una hora extra al mes.
+
+Te dejo el caso completo, con cifras: [Leer el caso]
+
+Si tu negocio tiene un proceso parecido — albaranes, partes de trabajo, pedidos manuales, facturas — esto te va a sonar.
+
+Marta
+
+PD: el lunes te envío algo distinto: 3 señales para saber si TU proceso es candidato a automatizar.</div>
+        <a class="cta">Ver el caso completo →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="day">D+5</div>
+        <div class="summary-text">
+          <div class="subject">3 señales de que tu proceso es automatizable</div>
+          <div class="preview-text">El error que veo en el 80% de las PYMEs: intentan automatizar lo que no toca…</div>
+        </div>
+        <span class="arrow">▾</span>
+      </summary>
+      <div class="body">
+        <div class="meta-row">
+          <span><b>Cuándo:</b> Día 5 (lunes)</span>
+          <span><b>Objetivo:</b> Valor educativo + autoridad</span>
+          <span><b>CTA:</b> Responder con tu proceso</span>
+        </div>
+        <div class="email">{{nombre}},
+
+El error que veo en el 80% de las PYMEs cuando me llaman para "implementar IA":
+
+Quieren automatizar lo que les apetece automatizar, no lo que toca automatizar.
+
+Toca cuando un proceso cumple las 3:
+
+1. Lo repites más de 10 veces al día
+2. Tiene reglas claras (si pasa X, se hace Y)
+3. Cuando falla, alguien pierde tiempo o duerme mal
+
+Si te falta una de las tres, automatizarlo es echar gasolina al fuego.
+
+Si las cumple, ahorras horas desde la semana 2.
+
+¿Tienes un proceso así? Respóndeme a este email con dos líneas describiéndolo. Te digo si es candidato.
+
+Marta
+
+PD: no te voy a vender nada en esa respuesta. Lo prometido.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="day">D+8</div>
+        <div class="summary-text">
+          <div class="subject">Por qué la mayoría de proyectos de IA fracasan</div>
+          <div class="preview-text">Y no es por la tecnología — te ahorro 6 meses de errores ajenos…</div>
+        </div>
+        <span class="arrow">▾</span>
+      </summary>
+      <div class="body">
+        <div class="meta-row">
+          <span><b>Cuándo:</b> Día 8</span>
+          <span><b>Objetivo:</b> Diferenciación frente a competencia técnica</span>
+          <span><b>CTA:</b> Calendly llamada diagnóstico</span>
+        </div>
+        <div class="email">{{nombre}},
+
+Una verdad incómoda sobre los proyectos de IA en PYME:
+
+El 70% no fracasa por la tecnología. Fracasa porque nadie le preguntó a la persona que iba a usarlo si lo iba a usar.
+
+Cuando entro en una empresa, mi primera reunión NO es con el director.
+
+Es con la persona que va a tener que abrir la app, sacar la foto, revisar el dato. Si esa persona no entiende qué pasa o no le hace la vida más fácil, el proyecto está muerto antes de empezar.
+
+Suena obvio. No lo es. La mayoría de consultoras de IA empiezan por arriba y aterrizan en agosto, cuando ya no hay tiempo de cambiarlo.
+
+Si quieres un diagnóstico gratis (30 min, hablamos del proceso, te digo si vale la pena), reserva aquí:
+
+[Reservar 30 min]
+
+Si no te encaja todavía, no pasa nada. El viernes te llega el último email de la serie.
+
+Marta</div>
+        <a class="cta">Reservar diagnóstico (gratis) →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="day">D+12</div>
+        <div class="summary-text">
+          <div class="subject">Última: ¿seguimos en contacto?</div>
+          <div class="preview-text">Si has llegado hasta aquí gracias. Y dos opciones para lo que viene…</div>
+        </div>
+        <span class="arrow">▾</span>
+      </summary>
+      <div class="body">
+        <div class="meta-row">
+          <span><b>Cuándo:</b> Día 12</span>
+          <span><b>Objetivo:</b> Segmentación final</span>
+          <span><b>CTA:</b> Suscribirse al boletín mensual</span>
+        </div>
+        <div class="email">{{nombre}},
+
+Si has leído los 4 emails anteriores: gracias. De verdad.
+
+Cierro la serie con dos opciones:
+
+A) Si te ha gustado y quieres seguir leyéndome: cada último viernes de mes te envío un email con 1 caso real de automatización en PYME (sin promo, sin gritos). [Apuntarme]
+
+B) Si esto no era para ti: no pasa nada, no te vuelvo a escribir. Puedes darte de baja aquí: [Baja].
+
+Y si en algún momento de los próximos meses tienes esa reunión donde alguien dice "Esto lo deberíamos automatizar", acuérdate de mí.
+
+Estoy a una respuesta de email.
+
+Marta
+
+PD: si has elegido (A), nos vemos el último viernes del mes. Si no, suerte. En serio.</div>
+        <a class="cta">Apuntarme al boletín →</a>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="note">
+    <b>Cómo se generó.</b> Brief: "secuencia de bienvenida para guía sobre automatización en PYMEs, registro cercano (C), un solo CTA por email". La skill <code>marketing-email-sequence</code> leyó el voice profile, el ICP (director de PYME 50-200 empleados) y propuso cadencia 0/2/5/8/12 días basada en patrón de open rate B2B. <code>tool-output-verifier</code> validó que ningún email superase la voz patrón.
+  </div>
+</div>
+</body>
+</html>
