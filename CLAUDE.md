@@ -52,7 +52,7 @@ Antes de responder al primer mensaje del usuario en este repo, **debes** comprob
 - **Clientes**: `clients/<nombre>/` (con `clients/_templates/` para nuevos)
 - **Docs operativos**: `docs/`
 - **Scripts del installer**: `scripts/install.sh`, `scripts/_install-gate.sh`, `scripts/_install-state.template.json`
-- **Vendored**: `vendor/sinapsis/` (engine), `vendor/cognito/` (Sistema Operativo de Pensamiento de Luis Pitik)
+- **Vendored**: `vendor/sinapsis/` (engine), `vendor/cognito/` (Sistema Operativo de Pensamiento de Luis Pitik), `vendor/arnes/` (skill opt-in para arrancar proyectos software, concepto fs-scaffold de Fernando Montero)
 
 ### Paths Sinapsis (engine global del operador)
 - **Skills root global**: `~/.claude/skills/` (Sinapsis instalado por install.sh)
@@ -128,9 +128,9 @@ Lo que aporta este repo encima de Sinapsis:
 
 ---
 
-## Skills registry (v0.8.0)
+## Skills registry (v0.8.2)
 
-Capa 1 = 26 skills core + 1 opcional.
+Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 
 ### `_meta/` — sistema (11)
 
@@ -148,11 +148,12 @@ Capa 1 = 26 skills core + 1 opcional.
 | `find-skills` | Descoverabilidad por intent |
 | `recuerda` | **Recall de memoria local** (SQLite+FTS5) con fuente citada — base para todos, semántico opt-in (v0.8.1) |
 
-### `_meta/_optional/` (1)
+### `_meta/_optional/` (2)
 
 | Skill | Cómo activar |
 |---|---|
 | `cognito` | `/install-skill cognito` |
+| `arnes` | `/install-skill arnes` (🆕 v0.8.0) — arrancar proyectos software por niveles. Concepto fs-scaffold de Fernando Montero. Vendoreada en `vendor/arnes/` |
 
 ### `marketing/` (6)
 

@@ -9,7 +9,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### En curso — Memory Upgrade (Store / Inject / Recall · benchmark vs Agentic OS Phase 2)
-- **v0.8.2 · P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
+- **v0.8.3 · P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
 - **v0.9.0 · P4 Team OS** — memoria/permisos compartidos para equipo. Módulo AVANZADO opcional (no core), decisión de negocio pendiente.
 
 ### Backlog
@@ -19,7 +19,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
-## v0.8.1 — Memory Upgrade · P1: recall local (SQLite + FTS5) + CodeGraph en el catálogo (2026-06-03)
+## v0.8.2 — Memory Upgrade · P1: recall local (SQLite + FTS5) + CodeGraph en el catálogo (2026-06-03)
 
 > **Por qué esta release**: el recall se construyó **LOCAL-FIRST** (SQLite + FTS5, cero servicios externos) en vez de Supabase/pgvector. Motivo: este repo lo instala **gente no técnica** de la comunidad — la sencillez de instalación manda sobre la potencia máxima. Búsqueda por keyword español para todos; semántica (embeddings) **opt-in** para quien ya tenga histórico que lo justifique. Patrón inspirado en CodeGraph (índice local en un `.db`, instalable de un comando).
 
@@ -42,26 +42,65 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
-## v0.8.0 — Memory Upgrade · Fase A: working memory + memo manual (2026-06-02)
+## v0.8.1 — Memory Upgrade · Fase A: working memory + memo manual (2026-06-02)
 
-> **Por qué esta release**: benchmark del OS contra Agentic OS (Scrapes) Phase 2, que organiza la memoria en tres ejes — Store / Inject / Recall. El análisis confirmó que iAmasters OS ya gana en Store e Inject (captura turno a turno vía Sinapsis + instincts con confidence decay) y tiene un motor de aprendizaje que ellos no tienen, pero que el **recall semántico** es el hueco real. Esta Fase A cierra primero la pieza más barata y de mayor uso diario: una memoria de trabajo curada que se inyecta al inicio y se mantiene en el cierre, más un memo manual en lenguaje natural. P1 (recall semántico), P2 (captura) y P4 (Team OS) van en releases siguientes.
+> **Por qué esta release**: benchmark del OS contra Agentic OS (Scrapes) Phase 2, que organiza la memoria en tres ejes — Store / Inject / Recall. El análisis confirmó que iAmasters OS ya gana en Store e Inject (captura turno a turno vía Sinapsis + instincts con confidence decay) y tiene un motor de aprendizaje que ellos no tienen, pero que el **recall semántico** es el hueco real. Esta Fase A cierra primero la pieza más barata y de mayor uso diario: una memoria de trabajo curada que se inyecta al inicio y se mantiene en el cierre, más un memo manual en lenguaje natural.
 
 ### Added
 
 - **`context/working-memory.md`** — scratchpad de trabajo curado con tres secciones (Hilos activos / Notas de entorno / Decisiones pendientes), tope ~2.500 caracteres y máx. 5 ítems por sección. Es la memoria "de trabajo" del OS: lo que el agente tiene presente sin buscar nada. Privado (gitignored); se bootstrappea en `meta-start-here` si no existe.
-- **Memo manual** — comportamiento documentado en `CLAUDE.md`: cuando el operador dice "recuerda esto" / "apunta que" / "nota que" / "para la próxima", el agente escribe el ítem en la sección correcta del working-memory con dedup y respeto del tope. Visible de inmediato en la sesión; se carga al inicio en las siguientes.
+- **Memo manual** — comportamiento documentado en `CLAUDE.md`: cuando el operador dice "recuerda esto" / "apunta que" / "nota que" / "para la próxima", el agente escribe el ítem en la sección correcta del working-memory con dedup y respeto del tope.
 
 ### Changed
 
 - **`meta-start-here`** (Paso 2) — ahora carga `context/working-memory.md` lo primero como foto del estado actual (y lo crea si falta).
 - **`meta-wrap-up`** (nuevo Paso 5.5) — mantiene el working-memory al cierre: quita hilos cerrados, mueve decisiones tomadas a `decisions-log.md`, respeta el tope.
-- **`CLAUDE.md`** — `working-memory.md` añadido a la carga obligatoria de inicio, a la lista de paths de `context/` y a la capa Agent Context; nueva nota de memo manual; header de skills registry a v0.8.0.
+- **`CLAUDE.md`** — `working-memory.md` añadido a la carga obligatoria de inicio, a la lista de paths de `context/` y a la capa Agent Context; nueva nota de memo manual.
 - **`context/README.md`** — documentado `working-memory.md`.
 - **`.gitignore`** — `context/working-memory.md` marcado como dato privado del operador.
 
 ### Meta
 
 - Análisis comparativo completo iAmasters OS vs Agentic OS (Store/Inject/Recall, orquestación, multi-cliente, Team OS, UI) — 2026-06-02. Conclusión rectora: no copiar su Command Centre ni sus skill systems de contenido (ya cubiertos por skills propias); sí cerrar el recall semántico y evaluar Team OS dado el equipo creciente.
+
+---
+
+## v0.8.0 — Skill opt-in `arnes` (2026-05-20)
+
+> **Por qué esta release**: incorporar al catálogo una skill nativa creada en la comunidad de IA Masters Academy para arrancar proyectos software. Sigue el modelo de "sistema vivo" del OS: una skill validada en producción (139/139 tests, 5/5 sub-agentes Haiku en paralelo en E2E, 3 rondas de review con Fernando Montero) que ahora cualquier miembro puede activar con un comando. Se integra como **opt-in** (no se instala por defecto) siguiendo el mismo patrón que `cognito`: vendoreada intacta en `vendor/arnes/` y activable con `/install-skill arnes`.
+
+### Added — skill nueva (opt-in)
+
+- **`_meta/_optional/arnes`** (nueva, opt-in) — skill para vibe-coders no técnicos que ayuda a arrancar proyectos software por niveles: **Express** (5 min, web simple sin login), **Estándar** (20-30 min, app con login y datos), **PRO** (1-2 h, software profesional con SDD+TDD completo y revisión adversarial). Más dos modos para proyectos existentes: **Adoptar** (mete armazón sin tocar el código del usuario) y **Mantener** (actualiza armazón cuando la skill evoluciona). Pregunta SIEMPRE qué nivel quieres antes de avanzar — nunca decide por el usuario. Mantenida en repo separado [`iamasters-academy/arnes`](https://github.com/iamasters-academy/arnes) (público, MIT).
+
+- **`vendor/arnes/`** — copia intacta del repo arnes v0.2.4 (incluye SKILL.md, README, CHANGELOG, CITATION, LICENSE MIT, CODEOWNERS, docs/, modos/, plantillas/, scripts/, tutorial/, estado/). 452K.
+
+### Concepto original y créditos
+
+`arnes` adapta el concepto **fs-scaffold** de **Fernando Montero** (Fersora Solutions SL), presentado en el Café Camaleónico del 18 de mayo de 2026 en la comunidad iAmasters Academy. La adaptación para vibe-coders no técnicos mantiene el rigor donde importa (Modo PRO) pero ofrece niveles más ligeros (Express, Estándar) para el 80% de casos donde no hace falta tanto ceremonial.
+
+Fernando aparece como contributor en `CITATION.cff` por la integración de arnes en este OS, y arnes se referencia explícitamente como software vendored.
+
+### Changed
+
+- **`README.md`** — badge versión actualizado a v0.8.0. Nueva entrada `arnes` en sección "Skills incluidas → `_meta/_optional/`". Entrada en Roadmap. Entrada en Créditos con atribución a Fernando.
+- **`CLAUDE.md`** — Skills registry actualizado a v0.8.0. Sección `_meta/_optional/ (2)`, fila nueva para arnes. Mención de `vendor/arnes/` en la sección "Vendored".
+- **`CITATION.cff`** — bump versión `0.7.1` → `0.8.0`. Fernando Montero añadido como `contributors`. arnes añadida en `references` como software vendored.
+- **`scripts/_install-state.template.json`** — version bump `0.7.1` → `0.8.0`.
+
+### Cómo activar
+
+Desde Claude Code en este repo:
+
+```
+/install-skill arnes
+```
+
+Reinicia Claude Code tras la activación. Triggea con frases como «crea una app», «monta una landing», «nuevo proyecto».
+
+### No breaking changes
+
+Ninguna skill existente, configuración o flujo se modifica. La instalación de iAmasters OS sigue exactamente igual: arnes solo aparece si el usuario decide activarla explícitamente. `scripts/install.sh` no la copia automáticamente (mismo criterio que con cognito desde v0.4.3).
 
 ---
 
