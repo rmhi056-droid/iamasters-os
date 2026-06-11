@@ -115,7 +115,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 **Memoria de trabajo (memo manual)**: cuando el operador diga *"recuerda esto"*, *"apunta que"*, *"nota que"* o *"para la próxima"*, escribe el ítem en la sección que corresponda de `context/working-memory.md` (Hilos activos / Notas de entorno / Decisiones pendientes), con dedup y respetando el tope. Visible de inmediato en esta sesión; en sesiones futuras se carga al inicio.
 
-**Skills curadas (`.claude/skills/`)** — 26 skills core + 2 opcionales (cognito, arnes) (ver registry abajo).
+**Skills curadas (`.claude/skills/`)** — 27 skills core + 2 opcionales (cognito, arnes) (ver registry abajo).
 
 **Niveles de proyecto**:
 1. **Single task** — pregunta directa. Output a `projects/<skill-name>/<fecha>-<titulo>/`.
@@ -130,7 +130,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 ## Skills registry (v0.8.2)
 
-Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
+Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
 
 ### `_meta/` — sistema (11)
 
@@ -166,10 +166,11 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 | `marketing-content-repurposing` | Distribución multiplataforma |
 | `marketing-email-sequence` | Secuencias de email con brand voice y gate obligatorio |
 
-### `automation/` (2)
+### `automation/` (3)
 
 | Skill | Descripción |
 |---|---|
+| `automation-loop-engine` | Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas y aprendizaje |
 | `automation-n8n-to-claude` | Migra workflows n8n al ecosistema Claude |
 | `automation-n8n-builder` | Crea workflows n8n vía MCP `n8n-mcp` |
 
@@ -203,7 +204,7 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 
 ### Slash commands
 
-`/install` · `/install-status` · `/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende` · `/deep-dive` · `/recuerda`
+`/install` · `/install-status` · `/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende` · `/deep-dive` · `/recuerda` · `/loops` · `/evalua-loop`
 
 Los dos primeros (`/install`, `/install-status`) son nuevos en v0.6 y son la **única vía oficial** para gestionar la instalación desde dentro de Claude Code.
 

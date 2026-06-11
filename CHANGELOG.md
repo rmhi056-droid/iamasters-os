@@ -10,13 +10,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 - Sincronizadas las menciones de Sinapsis vendored a v4.6.1 en README y CITATION.
-- Unificado el conteo documental a 26 skills core + 2 opcionales (cognito, arnes).
+- Unificado el conteo documental a 27 skills core + 2 opcionales (cognito, arnes).
 - Añadido H1 descriptivo al comando `.claude/commands/doctor.md`.
 - Ajustada la detección de Python en `scripts/install.sh` para separar candidatos POSIX de `py -3` en Windows/Git Bash.
 
 ### Added
 - Nueva guía `docs/skill-creation-guide.md` con patrón real de skills, frontmatter, validación y ejemplo mínimo.
 - Nueva plantilla `brand-context/glossary-template.json` para correcciones STT de `tool-zoom-summary`.
+- `automation-loop-engine` (Loop Engineering) como skill core + carpeta `loops/` + comandos `/loops` y `/evalua-loop` + integración con `health-check`, `/recuerda` y `working-memory`.
 
 ### Changed
 - `docs/quickstart.md` ampliado con árbol de decisión y plan de primera semana.

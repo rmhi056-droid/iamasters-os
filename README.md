@@ -58,7 +58,7 @@ Y desde dentro de Claude Code: `/install-status` te muestra el dashboard sin toc
 
 1. **Sinapsis v4.6.1 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
 2. **Capa OS** — brand context (voice, positioning, ICP), agent context sectorizado (me, work, team, priorities, goals), proyectos estructurados, multi-cliente con templates por vertical.
-3. **Skills curadas** — 26 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
+3. **Skills curadas** — 27 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Incluye Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas y aprendizaje acumulado. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
 
 > 🌱 **Sistema vivo**: el catálogo crece con la comunidad. Cuando una skill nueva de IA Masters Academy demuestra valor en producción, entra al repo. Ver [`docs/skills-recommended.md`](docs/skills-recommended.md) para proponer una.
 
@@ -76,7 +76,7 @@ No requiere conocimientos de programación. Sí requiere paciencia para configur
 
 - ✅ Memoria que persiste entre sesiones (no más "explícame tu stack otra vez")
 - ✅ Tu primer entregable real generado por el sistema en los primeros 20 min (welcome-quick-win)
-- ✅ 26 skills core + 2 opcionales (cognito, arnes), instaladas, listas para activarse cuando hablas con Claude
+- ✅ 27 skills core + 2 opcionales (cognito, arnes), instaladas, listas para activarse cuando hablas con Claude
 - ✅ Brand context (voz, posicionamiento, ICP) generable en 30 minutos extra
 - ✅ Multi-cliente listo para escalar (4 templates de vertical incluidos)
 - ✅ Sistema de aprendizaje continuo: lo que repites se gradúa a regla
@@ -141,7 +141,8 @@ _meta/                            Sistema y rituales del OS
 ├── seis-sombreros                Método 6 sombreros de De Bono con anti-ancla y 7 variantes (v0.7)
 ├── decisions-log                 Diario append-only inspirado en second-brain
 ├── health-check                  Diagnóstico (vía `/doctor`)
-└── find-skills                   Descoverabilidad por intent en lenguaje natural
+├── find-skills                   Descoverabilidad por intent en lenguaje natural
+└── recuerda                      Recall local con fuentes citadas (vía `/recuerda`)
 
 marketing/                        Voz, contenido y conversión
 ├── marketing-brand-voice         Voice profile + 3 registros A/B/C
@@ -152,6 +153,7 @@ marketing/                        Voz, contenido y conversión
 └── marketing-email-sequence      🆕 Secuencias de email (welcome, nurture, win-back)
 
 automation/                       🆕 Automatización y migración
+├── automation-loop-engine        Loop Engineering: sistemas repetibles con verificación
 ├── automation-n8n-to-claude      Migra workflows n8n al ecosistema Claude
 └── automation-n8n-builder        Crea workflows n8n desde Claude (vía MCP n8n-mcp)
 
@@ -186,7 +188,7 @@ iamasters-os/
 ├── .claude/
 │   ├── settings.json           # Hooks Sinapsis + permisos seguros por defecto
 │   ├── commands/               # Slash commands del OS
-│   └── skills/                 # 26 skills core + 2 opcionales (cognito, arnes)
+│   └── skills/                 # 27 skills core + 2 opcionales (cognito, arnes)
 │
 ├── brand-context/              # Tu marca: voice, positioning, ICP, assets
 ├── context/                    # Contexto sectorizado: me, work, team, priorities, goals
@@ -217,7 +219,7 @@ iamasters-os/
 | Sin OS | Con iAmasters OS |
 |---|---|
 | Cada sesión empieza explicando tu stack | Sinapsis recuerda y carga skills relevantes |
-| Skills sueltas sin curar | 26 skills core + 2 opcionales (cognito, arnes) validadas para tu avatar |
+| Skills sueltas sin curar | 27 skills core + 2 opcionales (cognito, arnes) validadas para tu avatar |
 | Brand voice cada vez que escribes | Voice profile permanente con 3 registros A/B/C |
 | Outputs sin gate de calidad | `tool-output-verifier` antes de entregar |
 | 1 cliente o se mezcla todo | Multi-cliente con templates por vertical |
