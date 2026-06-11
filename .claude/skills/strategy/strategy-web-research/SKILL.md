@@ -1,9 +1,11 @@
 ---
 name: strategy-web-research
-description: Investiga temas online, busca información actual, compara opciones y produce informes citados a partir de varias fuentes web. Usar cuando el usuario pida "investiga este tema", "busca en internet", "mira información actual", "compara opciones" o "hazme un informe". English triggers: web research, search the web, research report.
+description: Investiga temas online con búsqueda ligera de 3-5 fuentes, información actual y síntesis citada. Úsala para preguntas web acotadas, comparaciones rápidas o informes breves; si el usuario pide informe completo, triangulación, scoring de fuentes o análisis exhaustivo, usa `strategy-investigacion-profunda`. English triggers: web research, search the web, quick research report.
 ---
 
 # Skill de investigación web
+
+**Diferencia con `strategy-investigacion-profunda`:** esta skill es para búsqueda ligera y rápida con 3-5 fuentes. `strategy-investigacion-profunda` es para informes completos con triangulación, scoring de fuentes, evidencias persistidas y verificación de afirmaciones.
 
 ## Proceso de investigación
 

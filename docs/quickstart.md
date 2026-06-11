@@ -30,6 +30,32 @@ Primero: `Ejecuta marketing-brand-voice con mi web y LinkedIn`.
 
 Después: `Usa marketing-copywriting para escribir 3 posts de LinkedIn sobre <tema>`.
 
+### ¿Vas a lanzar una web?
+
+Antes de publicar: `Ejecuta tool-quality-gate y tool-seguridad-ia`.
+
+Para cumplimiento y riesgo legal: `Usa tool-web-legal-audit con esta URL`.
+
+Para seguridad defensiva autorizada: `Usa tool-web-security-audit con esta URL`. Confirma siempre que la web es tuya o tienes permiso explícito.
+
+### ¿Vas a arrancar un proyecto software?
+
+Primero: `Usa strategy-stack-recommender para recomendar stack`.
+
+Después, si vas a construir con arnes: `Arranca el proyecto con arnes en nivel Express, Estándar o PRO`.
+
+### ¿Necesitas investigar algo a fondo?
+
+Usa `strategy-web-research` para una búsqueda ligera con 3-5 fuentes.
+
+Usa `strategy-investigacion-profunda` para un informe completo con triangulación, scoring de fuentes y verificación de afirmaciones.
+
+### ¿Quieres analizar campañas o vídeos sociales?
+
+Para campañas: `Usa marketing-meta-ads-analyzer con este export de Meta Ads`.
+
+Para vídeos: `Usa tool-transcribe-social con esta URL`.
+
 ### ¿Trabajas para varios clientes?
 
 Ejecuta `/add-client`.

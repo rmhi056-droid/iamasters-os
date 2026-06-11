@@ -115,7 +115,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 **Memoria de trabajo (memo manual)**: cuando el operador diga *"recuerda esto"*, *"apunta que"*, *"nota que"* o *"para la próxima"*, escribe el ítem en la sección que corresponda de `context/working-memory.md` (Hilos activos / Notas de entorno / Decisiones pendientes), con dedup y respetando el tope. Visible de inmediato en esta sesión; en sesiones futuras se carga al inicio.
 
-**Skills curadas (`.claude/skills/`)** — 27 skills core + 2 opcionales (cognito, arnes) (ver registry abajo).
+**Skills curadas (`.claude/skills/`)** — 35 skills core + 2 opcionales (cognito, arnes) (ver registry abajo).
 
 **Niveles de proyecto**:
 1. **Single task** — pregunta directa. Output a `projects/<skill-name>/<fecha>-<titulo>/`.
@@ -130,7 +130,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 ## Skills registry (v0.8.2)
 
-Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
+Capa 1 = 35 skills core + 2 opcionales (cognito, arnes).
 
 ### `_meta/` — sistema (11)
 
@@ -155,7 +155,7 @@ Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
 | `cognito` | `/install-skill cognito` |
 | `arnes` | `/install-skill arnes` (🆕 v0.8.0) — arrancar proyectos software por niveles. Concepto fs-scaffold de Fernando Montero. Vendoreada en `vendor/arnes/` |
 
-### `marketing/` (6)
+### `marketing/` (7)
 
 | Skill | Descripción |
 |---|---|
@@ -165,6 +165,7 @@ Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
 | `marketing-copywriting` | Copy con humanizer gate |
 | `marketing-content-repurposing` | Distribución multiplataforma |
 | `marketing-email-sequence` | Secuencias de email con brand voice y gate obligatorio |
+| `marketing-meta-ads-analyzer` | Diagnóstico experto de campañas Meta Ads con Breakdown Effect |
 
 ### `automation/` (3)
 
@@ -174,14 +175,16 @@ Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
 | `automation-n8n-to-claude` | Migra workflows n8n al ecosistema Claude |
 | `automation-n8n-builder` | Crea workflows n8n vía MCP `n8n-mcp` |
 
-### `strategy/` (2)
+### `strategy/` (4)
 
 | Skill | Descripción |
 |---|---|
 | `metodo-ias` | Método I.A.S. (Intención · Acción · Síntesis) anti-AI-brain-fry — diario + semanal (v0.7) |
-| `strategy-web-research` | Investigación web citada con plan y subagentes |
+| `strategy-web-research` | Búsqueda ligera citada con 3-5 fuentes |
+| `strategy-investigacion-profunda` | Informes completos con triangulación, scoring y verificación |
+| `strategy-stack-recommender` | Recomendación de stack tecnológico antes de construir |
 
-### `tools/` (4)
+### `tools/` (9)
 
 | Skill | Descripción |
 |---|---|
@@ -189,6 +192,11 @@ Capa 1 = 27 skills core + 2 opcionales (cognito, arnes).
 | `tool-humanizer` | Quita patrones AI-tell |
 | `tool-output-verifier` | Gate de calidad |
 | `tool-zoom-summary` | Resumen HTML interactivo de reuniones Zoom (transcripción + chat + topics + recursos) (v0.7) |
+| `tool-seguridad-ia` | Prompts preventivos y checklist de seguridad para desarrollo con IA |
+| `tool-quality-gate` | Validación pre-deploy con score 0-100 |
+| `tool-transcribe-social` | Transcripción de vídeos sociales con Groq Whisper |
+| `tool-web-legal-audit` | Auditoría RGPD/LSSI/cookies/accesibilidad para webs |
+| `tool-web-security-audit` | Auditoría defensiva de seguridad web autorizada |
 
 ### `visualization/` (1)
 

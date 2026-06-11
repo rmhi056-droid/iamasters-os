@@ -10,7 +10,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 - Sincronizadas las menciones de Sinapsis vendored a v4.6.1 en README y CITATION.
-- Unificado el conteo documental a 27 skills core + 2 opcionales (cognito, arnes).
+- Unificado el conteo documental a 35 skills core + 2 opcionales (cognito, arnes).
 - Añadido H1 descriptivo al comando `.claude/commands/doctor.md`.
 - Ajustada la detección de Python en `scripts/install.sh` para separar candidatos POSIX de `py -3` en Windows/Git Bash.
 
@@ -19,6 +19,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Nueva plantilla `brand-context/glossary-template.json` para correcciones STT de `tool-zoom-summary`.
 - `automation-loop-engine` (Loop Engineering) como skill core + carpeta `loops/` + comandos `/loops` y `/evalua-loop` + integración con `health-check`, `/recuerda` y `working-memory`.
 - 5 plantillas de loops (`contenido-semanal`, `propuestas`, `triaje-leads`, `informe-cliente`, `revision-semanal`) + `docs/loop-engineering.md`.
+- `tool-seguridad-ia` — prompts preventivos y checklist pre-deploy de seguridad para desarrollo con IA.
+- `tool-quality-gate` — validación pre-deploy con setup de tests y score 0-100.
+- `marketing-meta-ads-analyzer` — diagnóstico experto de campañas Meta Ads con Breakdown Effect.
+- `tool-transcribe-social` — transcripción de Reels/TikTok/Shorts con Groq Whisper y fallback claro.
+- `tool-web-legal-audit` — auditoría RGPD/LSSI/cookies/accesibilidad con evidencias y remediación.
+- `strategy-investigacion-profunda` — informes completos con triangulación, scoring y verificación de citas.
+- `tool-web-security-audit` — auditoría defensiva de seguridad web para objetivos autorizados.
+- `strategy-stack-recommender` — recomendación de stack tecnológico antes de construir.
 
 ### Changed
 - `docs/quickstart.md` ampliado con árbol de decisión y plan de primera semana.

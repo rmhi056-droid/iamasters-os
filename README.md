@@ -58,7 +58,7 @@ Y desde dentro de Claude Code: `/install-status` te muestra el dashboard sin toc
 
 1. **Sinapsis v4.6.1 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
 2. **Capa OS** — brand context (voice, positioning, ICP), agent context sectorizado (me, work, team, priorities, goals), proyectos estructurados, multi-cliente con templates por vertical.
-3. **Skills curadas** — 27 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Incluye Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas, aprendizaje acumulado y 5 plantillas listas para usar. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
+3. **Skills curadas** — 35 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Incluye Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas, aprendizaje acumulado y 5 plantillas listas para usar. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
 
 > 🌱 **Sistema vivo**: el catálogo crece con la comunidad. Cuando una skill nueva de IA Masters Academy demuestra valor en producción, entra al repo. Ver [`docs/skills-recommended.md`](docs/skills-recommended.md) para proponer una.
 
@@ -76,7 +76,7 @@ No requiere conocimientos de programación. Sí requiere paciencia para configur
 
 - ✅ Memoria que persiste entre sesiones (no más "explícame tu stack otra vez")
 - ✅ Tu primer entregable real generado por el sistema en los primeros 20 min (welcome-quick-win)
-- ✅ 27 skills core + 2 opcionales (cognito, arnes), instaladas, listas para activarse cuando hablas con Claude
+- ✅ 35 skills core + 2 opcionales (cognito, arnes), instaladas, listas para activarse cuando hablas con Claude
 - ✅ Brand context (voz, posicionamiento, ICP) generable en 30 minutos extra
 - ✅ Multi-cliente listo para escalar (4 templates de vertical incluidos)
 - ✅ Sistema de aprendizaje continuo: lo que repites se gradúa a regla
@@ -150,7 +150,8 @@ marketing/                        Voz, contenido y conversión
 ├── marketing-icp                 Cliente ideal: dolores, lenguaje, triggers
 ├── marketing-copywriting         Copy con humanizer gate obligatorio
 ├── marketing-content-repurposing Distribución multiplataforma
-└── marketing-email-sequence      🆕 Secuencias de email (welcome, nurture, win-back)
+├── marketing-email-sequence      🆕 Secuencias de email (welcome, nurture, win-back)
+└── marketing-meta-ads-analyzer   Diagnóstico experto de campañas Meta Ads
 
 automation/                       🆕 Automatización y migración
 ├── automation-loop-engine        Loop Engineering: sistemas repetibles con verificación
@@ -159,13 +160,20 @@ automation/                       🆕 Automatización y migración
 
 strategy/                         Investigación, estrategia y metodologías
 ├── metodo-ias                    🆕 Método I.A.S. (Intención · Acción · Síntesis) anti-AI-brain-fry (v0.7)
-└── strategy-web-research         Research profundo multi-fuente (LangChain)
+├── strategy-web-research         Búsqueda ligera citada (3-5 fuentes)
+├── strategy-investigacion-profunda Informes completos con triangulación y scoring
+└── strategy-stack-recommender    Recomendación de stack tecnológico
 
 tools/                            Utilidades transversales
 ├── tool-firecrawl-scraper        Wrapper Firecrawl con fallback manual
 ├── tool-humanizer                Quita patrones AI-tell del output
 ├── tool-output-verifier          Gate de calidad (humanizer + voice + length)
-└── tool-zoom-summary             🆕 Resumen HTML interactivo de reuniones Zoom (v0.7)
+├── tool-zoom-summary             🆕 Resumen HTML interactivo de reuniones Zoom (v0.7)
+├── tool-seguridad-ia             Checklist y prompts preventivos de seguridad IA
+├── tool-quality-gate             Validación pre-deploy con score 0-100
+├── tool-transcribe-social        Transcripción de vídeos sociales con Groq Whisper
+├── tool-web-legal-audit          Auditoría RGPD/LSSI/cookies/accesibilidad
+└── tool-web-security-audit       Auditoría defensiva de seguridad web
 
 visualization/                    Outputs compartibles
 └── tool-visual-explainer         Genera HTML autocontenido compartible
@@ -188,7 +196,7 @@ iamasters-os/
 ├── .claude/
 │   ├── settings.json           # Hooks Sinapsis + permisos seguros por defecto
 │   ├── commands/               # Slash commands del OS
-│   └── skills/                 # 27 skills core + 2 opcionales (cognito, arnes)
+│   └── skills/                 # 35 skills core + 2 opcionales (cognito, arnes)
 │
 ├── brand-context/              # Tu marca: voice, positioning, ICP, assets
 ├── context/                    # Contexto sectorizado: me, work, team, priorities, goals
@@ -219,7 +227,7 @@ iamasters-os/
 | Sin OS | Con iAmasters OS |
 |---|---|
 | Cada sesión empieza explicando tu stack | Sinapsis recuerda y carga skills relevantes |
-| Skills sueltas sin curar | 27 skills core + 2 opcionales (cognito, arnes) validadas para tu avatar |
+| Skills sueltas sin curar | 35 skills core + 2 opcionales (cognito, arnes) validadas para tu avatar |
 | Brand voice cada vez que escribes | Voice profile permanente con 3 registros A/B/C |
 | Outputs sin gate de calidad | `tool-output-verifier` antes de entregar |
 | 1 cliente o se mezcla todo | Multi-cliente con templates por vertical |
