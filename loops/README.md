@@ -46,11 +46,12 @@ También puede incluir candidatos detectados por el radar que todavía no se han
 
 ## Plantillas
 
-`loops/_templates/` queda reservado para plantillas de loops comunes.
+`loops/_templates/` contiene plantillas de loops comunes listas para adaptar.
 
 Antes de diseñar un loop desde cero, la skill debe mirar si existe una plantilla parecida.
 
-En esta fase la carpeta puede estar vacía: `.gitkeep` solo mantiene la estructura en Git.
+Las plantillas incluidas cubren contenido semanal, propuestas, triaje de leads, informes de
+cliente y revisión semanal de loops.
 
 ## Privacidad
 

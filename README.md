@@ -58,7 +58,7 @@ Y desde dentro de Claude Code: `/install-status` te muestra el dashboard sin toc
 
 1. **Sinapsis v4.6.1 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
 2. **Capa OS** — brand context (voice, positioning, ICP), agent context sectorizado (me, work, team, priorities, goals), proyectos estructurados, multi-cliente con templates por vertical.
-3. **Skills curadas** — 27 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Incluye Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas y aprendizaje acumulado. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
+3. **Skills curadas** — 27 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Incluye Loop Engineering: convierte trabajo repetitivo en sistemas con verificación, compuertas humanas, aprendizaje acumulado y 5 plantillas listas para usar. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
 
 > 🌱 **Sistema vivo**: el catálogo crece con la comunidad. Cuando una skill nueva de IA Masters Academy demuestra valor en producción, entra al repo. Ver [`docs/skills-recommended.md`](docs/skills-recommended.md) para proponer una.
 

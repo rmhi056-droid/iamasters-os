@@ -18,6 +18,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Nueva guía `docs/skill-creation-guide.md` con patrón real de skills, frontmatter, validación y ejemplo mínimo.
 - Nueva plantilla `brand-context/glossary-template.json` para correcciones STT de `tool-zoom-summary`.
 - `automation-loop-engine` (Loop Engineering) como skill core + carpeta `loops/` + comandos `/loops` y `/evalua-loop` + integración con `health-check`, `/recuerda` y `working-memory`.
+- 5 plantillas de loops (`contenido-semanal`, `propuestas`, `triaje-leads`, `informe-cliente`, `revision-semanal`) + `docs/loop-engineering.md`.
 
 ### Changed
 - `docs/quickstart.md` ampliado con árbol de decisión y plan de primera semana.

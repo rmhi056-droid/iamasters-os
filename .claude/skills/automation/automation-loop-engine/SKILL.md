@@ -81,8 +81,9 @@ Registro central:
 
 Plantillas:
 
-- `loops/_templates/` — antes de diseñar de cero, mira si existe una plantilla parecida. En esta
-  fase puede estar vacío: la carpeta queda preparada para plantillas futuras.
+- `loops/_templates/` — antes de diseñar de cero, mira si existe una plantilla parecida.
+  Incluye 5 plantillas iniciales: `loop-contenido-semanal.md`, `loop-propuestas.md`,
+  `loop-triaje-leads.md`, `loop-informe-cliente.md` y `loop-revision-semanal.md`.
 
 El contenido de `loops/` es privado del operador y no se versiona salvo `README.md` y `_templates/`.
 
