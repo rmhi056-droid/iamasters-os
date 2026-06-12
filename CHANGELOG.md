@@ -14,9 +14,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) con voice profile del operador.
 - Dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis).
 - Onboarding con extracción desde URL (web/LinkedIn del operador → brand-context automático vía Firecrawl).
+- GitHub privado como destino adicional de `/backup` (versionado completo). Requiere `gh` autenticado y excluir `.env` del push — evaluar si la fricción compensa para miembros no técnicos.
 - Loops desatendidos (ejecución programada sin sesión abierta) — decisión pendiente para v1.0.
 - Test end-to-end de instalación en máquina limpia antes de v1.0.
 - v1.0.0: release pública estable + vídeos Loom + landing en iamastersacademy.com/os.
+
+---
+
+## [0.10.1] — 2026-06-12
+
+### Changed
+- `/backup` ahora detecta también **Google Drive** y **OneDrive** (además de iCloud y Dropbox), incluyendo las rutas `CloudStorage` modernas de macOS y "Mi unidad" en español. La primera vez, el OS pregunta al operador en qué nube quiere sus copias y guarda la elección en `.env` (`IAMASTERS_BACKUP_DIR`); nunca vuelve a preguntar. Nuevos flags: `--where` (nubes detectadas) y `--dest <ruta>`.
 
 ---
 

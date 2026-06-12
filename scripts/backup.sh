@@ -7,14 +7,17 @@
 #  - Memoria Sinapsis global (~/.claude/skills/: operator-state,
 #    instincts, daily summaries, catalog, passive rules)
 #
-#  Destino (primero que exista, o IAMASTERS_BACKUP_DIR del .env):
-#    1. iCloud Drive  → iAmasters-Backup/
-#    2. Dropbox       → iAmasters-Backup/
-#    3. $HOME/iAmasters-Backup/
+#  Destino (en este orden):
+#    1. IAMASTERS_BACKUP_DIR del .env (elección del operador, se fija
+#       la primera vez via /backup) o flag --dest <ruta>
+#    2. Auto-detección: iCloud → Google Drive → Dropbox → OneDrive
+#    3. $HOME/iAmasters-Backup/ (sin nube: solo copia local)
 #
 #  Uso:
-#    bash scripts/backup.sh           # crea backup fechado
-#    bash scripts/backup.sh --list    # lista backups existentes
+#    bash scripts/backup.sh             # crea backup fechado
+#    bash scripts/backup.sh --list      # lista backups existentes
+#    bash scripts/backup.sh --where     # nubes detectadas en esta máquina
+#    bash scripts/backup.sh --dest <p>  # destino explícito (una vez)
 #  Rotación: conserva los últimos 7 backups, borra los más antiguos.
 # ============================================================
 
@@ -33,21 +36,93 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 SKILLS_GLOBAL="$HOME/.claude/skills"
 KEEP_LAST=7
 
+# ── Detección de nubes en esta máquina (Mac y Windows/Git Bash) ──
+detect_cloud() {
+    # $1 = icloud|gdrive|dropbox|onedrive; echoes la ruta base si existe
+    local d
+    case "$1" in
+        icloud)
+            d="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+            [ -d "$d" ] && echo "$d"
+            ;;
+        gdrive)
+            for d in "$HOME/Library/CloudStorage/GoogleDrive-"*"/My Drive" \
+                     "$HOME/Library/CloudStorage/GoogleDrive-"*"/Mi unidad" \
+                     "$HOME/Google Drive/My Drive" \
+                     "$HOME/Google Drive/Mi unidad" \
+                     "$HOME/Google Drive"; do
+                [ -d "$d" ] && { echo "$d"; return 0; }
+            done
+            ;;
+        dropbox)
+            for d in "$HOME/Dropbox" "$HOME/Library/CloudStorage/Dropbox"; do
+                [ -d "$d" ] && { echo "$d"; return 0; }
+            done
+            ;;
+        onedrive)
+            for d in "$HOME/OneDrive" "$HOME/Library/CloudStorage/OneDrive-"*; do
+                [ -d "$d" ] && { echo "$d"; return 0; }
+            done
+            ;;
+    esac
+    return 0
+}
+
 # ── Resolver destino ──
-# Prioridad: IAMASTERS_BACKUP_DIR (del .env) > iCloud > Dropbox > $HOME
+# Prioridad: --dest > IAMASTERS_BACKUP_DIR (.env) > iCloud > Google Drive
+#            > Dropbox > OneDrive > $HOME (local)
+ARG_DEST=""
+if [ "${1:-}" = "--dest" ]; then
+    ARG_DEST="${2:-}"
+    if [ -z "$ARG_DEST" ]; then
+        printf "%b\n" "Falta la ruta. Uso: bash scripts/backup.sh --dest <ruta>"
+        exit 1
+    fi
+    shift 2
+fi
+
 if [ -f "$REPO_ROOT/.env" ]; then
     ENV_DEST=$(grep -E '^IAMASTERS_BACKUP_DIR=' "$REPO_ROOT/.env" 2>/dev/null | cut -d= -f2- | tr -d '"' || true)
 fi
-ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
-if [ -n "${ENV_DEST:-}" ]; then
+if [ -n "$ARG_DEST" ]; then
+    DEST_ROOT="$ARG_DEST"
+elif [ -n "${ENV_DEST:-}" ]; then
     DEST_ROOT="$ENV_DEST"
-elif [ -d "$ICLOUD" ]; then
-    DEST_ROOT="$ICLOUD/iAmasters-Backup"
-elif [ -d "$HOME/Dropbox" ]; then
-    DEST_ROOT="$HOME/Dropbox/iAmasters-Backup"
 else
-    DEST_ROOT="$HOME/iAmasters-Backup"
+    DEST_ROOT=""
+    for cloud in icloud gdrive dropbox onedrive; do
+        base="$(detect_cloud "$cloud")"
+        if [ -n "$base" ]; then
+            DEST_ROOT="$base/iAmasters-Backup"
+            break
+        fi
+    done
+    [ -z "$DEST_ROOT" ] && DEST_ROOT="$HOME/iAmasters-Backup"
+fi
+
+if [ "${1:-}" = "--where" ]; then
+    echo ""
+    echo -e "${BOLD}Nubes detectadas en esta máquina:${NC}"
+    found=0
+    for cloud in icloud gdrive dropbox onedrive; do
+        base="$(detect_cloud "$cloud")"
+        if [ -n "$base" ]; then
+            case "$cloud" in
+                icloud)   label="iCloud Drive " ;;
+                gdrive)   label="Google Drive " ;;
+                dropbox)  label="Dropbox      " ;;
+                onedrive) label="OneDrive     " ;;
+            esac
+            echo "  $label → $base"
+            found=1
+        fi
+    done
+    [ "$found" -eq 0 ] && echo "  (ninguna — el backup iría a $HOME/iAmasters-Backup)"
+    echo ""
+    echo -e "Destino actual: ${CYAN}$DEST_ROOT${NC}"
+    echo "Para fijar otro: añade IAMASTERS_BACKUP_DIR=<ruta> al .env (o dile a Claude dónde lo quieres)."
+    exit 0
 fi
 
 if [ "${1:-}" = "--list" ]; then
