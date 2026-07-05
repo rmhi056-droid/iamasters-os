@@ -1,0 +1,24 @@
+{
+  "updatedAt": "2026-07-01T00:00:00.000Z",
+  "skills": [
+    { "name": "decisions-log", "category": "_meta", "path": ".claude/skills/_meta/decisions-log" },
+    { "name": "find-skills", "category": "_meta", "path": ".claude/skills/_meta/find-skills" },
+    { "name": "health-check", "category": "_meta", "path": ".claude/skills/_meta/health-check" },
+    { "name": "meta-deep-dive", "category": "_meta", "path": ".claude/skills/_meta/meta-deep-dive" },
+    { "name": "meta-onboarding-wizard", "category": "_meta", "path": ".claude/skills/_meta/meta-onboarding-wizard" },
+    { "name": "meta-skill-creator", "category": "_meta", "path": ".claude/skills/_meta/meta-skill-creator" },
+    { "name": "meta-start-here", "category": "_meta", "path": ".claude/skills/_meta/meta-start-here" },
+    { "name": "meta-wrap-up", "category": "_meta", "path": ".claude/skills/_meta/meta-wrap-up" },
+    { "name": "recuerda", "category": "_meta", "path": ".claude/skills/_meta/recuerda" },
+    { "name": "welcome-quick-win", "category": "_meta", "path": ".claude/skills/_meta/welcome-quick-win" },
+    { "name": "automation-loop-engine", "category": "automation", "path": ".claude/skills/automation/automation-loop-engine" },
+    { "name": "automation-n8n-builder", "category": "automation", "path": ".claude/skills/automation/automation-n8n-builder" },
+    { "name": "marketing-brand-voice", "category": "marketing", "path": ".claude/skills/marketing/marketing-brand-voice" },
+    { "name": "marketing-icp", "category": "marketing", "path": ".claude/skills/marketing/marketing-icp" },
+    { "name": "marketing-positioning", "category": "marketing", "path": ".claude/skills/marketing/marketing-positioning" },
+    { "name": "seis-sombreros", "category": "strategy", "path": ".claude/skills/strategy/seis-sombreros" },
+    { "name": "tool-firecrawl-scraper", "category": "tools", "path": ".claude/skills/tools/tool-firecrawl-scraper" },
+    { "name": "tool-humanizer", "category": "tools", "path": ".claude/skills/tools/tool-humanizer" },
+    { "name": "tool-output-verifier", "category": "tools", "path": ".claude/skills/tools/tool-output-verifier" }
+  ]
+}
