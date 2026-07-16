@@ -193,7 +193,7 @@ Viven en `skills-library/` (cero coste de contexto hasta instalarlas). Instalar:
 | `marketing-email-sequence` | Secuencias de email con brand voice y gate obligatorio |
 | `marketing-meta-ads-analyzer` | Diagnóstico experto de campañas Meta Ads con Breakdown Effect |
 
-#### `strategy/` (6)
+#### `strategy/` (9)
 
 | Skill | Descripción |
 |---|---|
@@ -203,6 +203,9 @@ Viven en `skills-library/` (cero coste de contexto hasta instalarlas). Instalar:
 | `strategy-web-research` | Búsqueda ligera citada con 3-5 fuentes |
 | `strategy-investigacion-profunda` | Informes completos con triangulación, scoring y verificación |
 | `strategy-stack-recommender` | Recomendación de stack tecnológico antes de construir |
+| `strategy-diagnostico-transformacion-digital` | Sesión de diagnóstico de madurez digital (24 preguntas, 6 dimensiones), cálculo de índice e informe .docx |
+| `strategy-auditoria-procesos-automatizacion` | Batería de 80-120 preguntas para preparar auditorías de automatización con clientes (antes de la reunión) |
+| `strategy-auditoria-procesos-diagramas` | Transcripción de auditoría → diagramas Mermaid del proceso actual, preguntas de profundización y propuesta optimizada (después de la reunión) |
 
 #### `tools/` (7)
 
